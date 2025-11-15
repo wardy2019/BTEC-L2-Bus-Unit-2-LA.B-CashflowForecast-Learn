@@ -1,0 +1,622 @@
+/* Cash Flow Forecast Lab - Accessible Styles */
+
+:root {
+  --bg: #ffffff;
+  --fg: #0f172a;
+  --muted: #475569;
+  --panel: #f1f5f9;
+  --accent: #2563eb;
+  --accent-2: #059669;
+  --danger: #dc2626;
+  --ok: #16a34a;
+  --focus: #f59e0b;
+  --shadow: 0 6px 24px rgba(15,23,42,.12);
+  --radius: 16px;
+  --font-dys: "OpenDyslexic", Atkinson, Verdana, Calibri, Arial, sans-serif;
+  --size: 18px; /* Increased from 16px for better readability */
+  --good: #16a34a;
+  --bad: #dc2626;
+  --grid: #cbd5e1;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  :root {
+    --bg: #ffffff;
+    --fg: #000000;
+    --muted: #333333;
+    --panel: #f8f8f8;
+    --accent: #0000ff;
+    --focus: #ff6600;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-dys);
+  font-size: var(--size);
+  line-height: 1.8; /* Increased from 1.65 for better readability */
+  letter-spacing: 0.5px; /* Increased for dyslexia support */
+  word-spacing: 0.8px; /* Increased for dyslexia support */
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px; /* Increased padding */
+}
+
+header {
+  display: flex;
+  gap: 16px; /* Increased gap */
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-bottom: 24px; /* Added margin for better spacing */
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.logo {
+  width: 48px; /* Increased size */
+  height: 48px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  box-shadow: var(--shadow);
+}
+
+h1 {
+  font-size: 1.6rem; /* Increased from 1.4rem */
+  margin: 0;
+  font-weight: 700;
+}
+
+h2 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  color: var(--fg);
+}
+
+h3 {
+  font-size: 1.2rem;
+  margin-top: 20px;
+  margin-bottom: 12px;
+}
+
+h4 {
+  font-size: 1.1rem;
+  margin-top: 16px;
+  margin-bottom: 8px;
+}
+
+/* Enhanced button styles for better accessibility */
+.btn {
+  border: 3px solid transparent; /* Increased border width */
+  background: var(--fg);
+  color: #fff;
+  padding: 12px 16px; /* Increased padding */
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  font-family: inherit;
+  font-size: 1rem;
+  min-height: 44px; /* Minimum touch target size */
+  transition: all 0.2s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow);
+}
+
+.btn.secondary {
+  background: var(--accent);
+}
+
+.btn.ghost {
+  background: transparent;
+  color: var(--fg);
+  border-color: var(--fg);
+}
+
+.btn.small {
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  min-height: 40px;
+}
+
+.btn:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus);
+}
+
+/* Enhanced panel styles */
+.panel {
+  background: var(--panel);
+  border-radius: var(--radius);
+  padding: 20px; /* Increased padding */
+  box-shadow: var(--shadow);
+  border: 2px solid #e2e8f0; /* Added border for better definition */
+}
+
+.grid {
+  display: grid;
+  gap: 20px; /* Increased gap */
+}
+
+.two {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 1000px) {
+  .two {
+    grid-template-columns: 320px 1fr;
+  }
+}
+
+/* Enhanced form controls */
+label {
+  display: block;
+  font-weight: 700;
+  margin-top: 12px; /* Increased margin */
+  margin-bottom: 6px; /* Added bottom margin */
+  font-size: 1.05rem; /* Slightly larger labels */
+}
+
+select,
+input[type="number"] {
+  width: 100%;
+  padding: 12px 14px; /* Increased padding */
+  border-radius: 10px;
+  border: 3px solid #e2e8f0; /* Increased border width */
+  background: #fff;
+  color: var(--fg);
+  font-family: inherit;
+  font-size: 1.1rem; /* Increased font size */
+  min-height: 44px; /* Minimum touch target */
+  box-sizing: border-box;
+}
+
+select:focus,
+input[type="number"]:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.25);
+}
+
+p.note {
+  color: var(--muted);
+  font-size: 1rem; /* Increased from 0.96rem */
+  line-height: 1.6;
+  margin: 8px 0;
+}
+
+/* Enhanced task box for better engagement */
+.task-box {
+  margin-top: 12px;
+  padding: 16px; /* Increased padding */
+  border-radius: 16px; /* Increased radius */
+  background: linear-gradient(135deg, #e5edf8, #f0f7ff); /* Added gradient */
+  border: 3px solid #d0e0ff; /* Increased border */
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1); /* Added shadow */
+}
+
+.slots-sentence {
+  margin-bottom: 12px;
+  font-size: 1.1rem; /* Increased font size */
+  line-height: 1.8;
+}
+
+/* Enhanced slot styles for better interaction */
+.slot {
+  display: inline-block;
+  min-width: 80px; /* Increased width */
+  padding: 6px 10px; /* Increased padding */
+  margin: 0 4px; /* Increased margin */
+  border-radius: 10px; /* Increased radius */
+  background: #fff;
+  border: 3px dashed #94a3b8; /* Increased border */
+  font-weight: 700;
+  text-align: center;
+  cursor: pointer;
+  font-size: 1rem;
+  min-height: 36px; /* Added minimum height */
+  transition: all 0.2s ease;
+}
+
+.slot:hover {
+  background: #f8fafc;
+  border-color: var(--accent);
+}
+
+.slot.filled {
+  border-style: solid;
+  border-color: var(--accent);
+  background: #dbeafe;
+}
+
+.slot:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus);
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px; /* Increased gap */
+  margin-top: 8px;
+  margin-bottom: 12px;
+}
+
+/* Enhanced chip styles */
+.chip {
+  border-radius: 999px;
+  padding: 8px 14px; /* Increased padding */
+  background: #fff;
+  border: 3px solid #cbd5e1; /* Increased border */
+  cursor: pointer;
+  font-size: 1rem; /* Increased font size */
+  font-weight: 700;
+  font-family: inherit;
+  min-height: 40px; /* Added minimum height */
+  transition: all 0.2s ease;
+}
+
+.chip:hover {
+  background: #f1f5f9;
+  border-color: var(--accent);
+  transform: translateY(-1px);
+}
+
+.chip:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus);
+}
+
+.chip.used {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Enhanced table styles */
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-radius: 12px;
+  background: #fff;
+  border: 3px solid #e2e8f0;
+  font-size: 0.95rem;
+  overflow-x: auto;
+  min-width: 800px;
+}
+
+.table-container {
+  overflow-x: auto;
+  margin: 0 -4px;
+}
+
+th,
+td {
+  padding: 8px 6px;
+  border-bottom: 2px solid #e5e7eb;
+  text-align: right;
+  white-space: nowrap;
+}
+
+th:nth-child(2), td:nth-child(2),
+th:nth-child(3), td:nth-child(3),
+th:nth-child(5), td:nth-child(5) {
+  min-width: 100px;
+}
+
+th:first-child, td:first-child {
+  min-width: 60px;
+}
+
+th:first-child,
+td:first-child {
+  text-align: left;
+}
+
+thead th {
+  background: #eef2f7;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+tr.negative {
+  background: linear-gradient(90deg, rgba(220, 38, 38, 0.12), transparent);
+}
+
+tr:nth-child(even) {
+  background: rgba(248, 250, 252, 0.5);
+}
+
+/* Enhanced chart styles */
+.chart {
+  height: 400px;
+  width: 100%;
+  border: 3px solid #e2e8f0;
+  border-radius: 12px;
+  background: #fff;
+}
+
+.axis {
+  stroke: #475569;
+  stroke-width: 2;
+}
+
+.gridline {
+  stroke: var(--grid);
+  stroke-dasharray: 3 3;
+}
+
+.line-bal {
+  stroke: #1d4ed8;
+  stroke-width: 4; /* Increased width */
+  fill: none;
+}
+
+.axis-label,
+.chart-title {
+  fill: #334155;
+  font-size: 14px; /* Increased from 12px */
+  font-weight: 700;
+}
+
+.chart-title {
+  font-size: 16px; /* Increased from 14px */
+}
+
+/* Enhanced pill styles */
+.pill {
+  display: inline-block;
+  padding: 6px 12px; /* Increased padding */
+  border-radius: 999px;
+  background: #e2e8f0;
+  color: #0f172a;
+  font-size: 1rem; /* Increased font size */
+  font-weight: 800;
+  margin: 4px;
+}
+
+/* Enhanced mini panel styles */
+.mini-panel {
+  margin-top: 20px; /* Increased margin */
+  padding: 16px; /* Increased padding */
+  border-radius: 16px;
+  background: linear-gradient(135deg, #e5edf8, #f0f7ff);
+  border: 3px solid #d0e0ff; /* Increased border */
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+}
+
+.mini-grid {
+  display: grid;
+  gap: 16px; /* Increased gap */
+}
+
+@media (min-width: 900px) {
+  .mini-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.mini-box {
+  background: #fff;
+  border-radius: 12px;
+  padding: 16px; /* Increased padding */
+  border: 3px solid #e2e8f0; /* Increased border */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Enhanced drag and drop styles */
+.bins-row {
+  display: flex;
+  gap: 12px; /* Increased gap */
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+
+.bin {
+  flex: 1 1 140px; /* Increased minimum width */
+  min-height: 100px; /* Increased height */
+  border: 3px dashed #94a3b8; /* Increased border */
+  border-radius: 12px;
+  padding: 10px; /* Increased padding */
+  background: #f8fafc;
+  font-size: 1rem; /* Increased font size */
+  transition: all 0.2s ease;
+}
+
+.bin:hover {
+  border-color: var(--accent);
+  background: #f0f9ff;
+}
+
+.bin strong {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 1.05rem;
+}
+
+.card-row {
+  margin-top: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px; /* Increased gap */
+}
+
+/* Enhanced card styles for drag and drop */
+.card {
+  background: #fff;
+  border: 3px solid #cbd5e1; /* Increased border */
+  border-radius: 10px;
+  padding: 10px 12px; /* Increased padding */
+  font-size: 1rem; /* Increased font size */
+  cursor: grab;
+  transition: all 0.2s ease;
+  min-height: 44px; /* Added minimum height */
+  display: flex;
+  align-items: center;
+}
+
+.card:hover {
+  border-color: var(--accent);
+  background: #f0f9ff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:active {
+  cursor: grabbing;
+}
+
+.card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--focus);
+}
+
+/* Success and error feedback styles */
+.feedback-success {
+  color: var(--good);
+  font-weight: 600;
+  background: rgba(22, 163, 74, 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 4px solid var(--good);
+}
+
+.feedback-error {
+  color: var(--danger);
+  font-weight: 600;
+  background: rgba(220, 38, 38, 0.1);
+  padding: 8px 12px;
+  border-radius: 8px;
+  border-left: 4px solid var(--danger);
+}
+
+/* Footer styles */
+.footer {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 32px; /* Increased margin */
+  font-size: 1rem; /* Increased font size */
+  padding: 16px;
+  border-top: 2px solid #e2e8f0;
+}
+
+/* Skip link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--accent);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Print styles */
+@media print {
+  .btn, .mini-panel {
+    display: none;
+  }
+  
+  .panel {
+    box-shadow: none;
+    border: 2px solid #000;
+  }
+  
+  body {
+    font-size: 12pt;
+    line-height: 1.4;
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .app {
+    padding: 12px;
+  }
+  
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+  }
+  
+  .brand {
+    justify-content: center;
+  }
+  
+  .bins-row {
+    flex-direction: column;
+  }
+  
+  .bin {
+    flex: none;
+  }
+  
+  table {
+    font-size: 0.85rem;
+    min-width: 700px;
+  }
+  
+  th, td {
+    padding: 6px 4px;
+  }
+  
+  .chart {
+    height: 300px;
+  }
+}
+
+/* Focus indicators for keyboard navigation */
+*:focus {
+  outline: 3px solid var(--focus);
+  outline-offset: 2px;
+}
+
+button:focus,
+input:focus,
+select:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--focus);
+}
+
+/* Animation for successful actions */
+@keyframes success-pulse {
+  0% { background-color: rgba(22, 163, 74, 0.1); }
+  50% { background-color: rgba(22, 163, 74, 0.2); }
+  100% { background-color: rgba(22, 163, 74, 0.1); }
+}
+
+.success-animation {
+  animation: success-pulse 0.6s ease-in-out;
+}

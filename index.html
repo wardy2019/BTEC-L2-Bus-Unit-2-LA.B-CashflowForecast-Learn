@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Interactive cash flow forecasting lab designed for accessible learning. Practice business planning with drag-and-drop activities and real-time calculations." />
+  <meta name="keywords" content="cash flow, business planning, education, accessibility, SEND, financial literacy" />
+  <title>Cash Flow Forecast Lab - Interactive Business Learning</title>
+  
+  <!-- Accessibility and performance optimizations -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+  
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Skip navigation for screen readers -->
+  <a href="#main" class="skip-link">Skip to main content</a>
+  
+  <div class="app">
+    <header role="banner">
+      <div class="brand">
+        <div class="logo" role="img" aria-label="Cash Flow Lab Logo"></div>
+        <h1>Cash Flow Forecast Lab</h1>
+      </div>
+      <nav aria-label="Preset scenarios and tools">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <button class="btn secondary" id="presetEntry" aria-describedby="preset-entry-desc">
+            Preset: Entry Level
+          </button>
+          <button class="btn secondary" id="presetCore" aria-describedby="preset-core-desc">
+            Preset: Core Level
+          </button>
+          <button class="btn secondary" id="presetStretch" aria-describedby="preset-stretch-desc">
+            Preset: Stretch Level
+          </button>
+          <button class="btn" id="printBtn" aria-label="Print this forecast">
+            🖨️ Print
+          </button>
+          <button class="btn ghost" id="resetBtn" aria-label="Reset all data to defaults">
+            🔄 Reset
+          </button>
+        </div>
+      </nav>
+      
+      <!-- Hidden descriptions for presets -->
+      <div id="preset-entry-desc" class="sr-only">Small startup with immediate cash payments</div>
+      <div id="preset-core-desc" class="sr-only">Established business with 30-day payment terms</div>
+      <div id="preset-stretch-desc" class="sr-only">Growing business with 60-day payment terms</div>
+    </header>
+
+    <main class="grid two" id="main" role="main">
+      <section class="panel" aria-labelledby="controls-heading">
+        <h2 id="controls-heading">Learning Activities & Controls</h2>
+        
+        <!-- Purpose Definition Task -->
+        <section class="task-box" id="purposeTask" aria-labelledby="purpose-heading">
+          <h3 id="purpose-heading">📝 Task 1: Build the Definition</h3>
+          <p class="note">
+            <strong>Instructions:</strong> Click the word tiles below to complete the sentence. 
+            Click a filled box to remove a word. This helps you understand what cash flow forecasting is for.
+          </p>
+          
+          <div class="slots-sentence" role="group" aria-labelledby="definition-sentence">
+            <p id="definition-sentence" class="sr-only">Complete this definition of cash flow forecasting</p>
+            A <strong>cash flow forecast</strong> is a plan that shows
+            <button class="slot" data-correct="when" data-slot="when1" aria-label="First timing word slot">____</button>
+            cash comes in and
+            <button class="slot" data-correct="when" data-slot="when2" aria-label="Second timing word slot">____</button>
+            cash goes out so the business can
+            <button class="slot" data-correct="avoid" data-slot="avoid" aria-label="Action word slot">____</button>
+            cash problems.
+          </div>
+          
+          <div class="chip-row" id="purposeBank" role="group" aria-label="Available words to complete the definition">
+            <button class="chip" data-word="when" aria-pressed="false">when</button>
+            <button class="chip" data-word="avoid" aria-pressed="false">avoid</button>
+            <button class="chip" data-word="profit" aria-pressed="false">profit</button>
+            <button class="chip" data-word="guess" aria-pressed="false">guess</button>
+            <button class="chip" data-word="sale price" aria-pressed="false">sale price</button>
+          </div>
+          
+          <button class="btn secondary small" id="checkPurpose" aria-describedby="purpose-feedback">
+            ✅ Check My Definition
+          </button>
+          <div class="note" id="purposeFeedback" aria-live="polite" aria-atomic="true"></div>
+        </section>
+
+        <!-- Forecast Controls -->
+        <fieldset style="border:none;padding:0;margin-top:20px;">
+          <legend class="sr-only">Forecast Settings</legend>
+          
+          <label for="months">📅 Forecast Period</label>
+          <select id="months" aria-describedby="months-help">
+            <option value="6">6 months</option>
+            <option value="9">9 months</option>
+            <option value="12" selected>12 months</option>
+          </select>
+          <p id="months-help" class="note">Choose how many months to forecast ahead</p>
+
+          <label for="opening">💰 Starting Cash Balance (£)</label>
+          <input id="opening" type="number" value="1000" min="0" step="1" 
+                 aria-describedby="opening-help" />
+          <p id="opening-help" class="note">How much cash the business starts with</p>
+
+          <label for="term">⏰ Customer Payment Terms</label>
+          <select id="term" aria-describedby="terms-help">
+            <option value="0">Cash on sale (immediate payment)</option>
+            <option value="30" selected>Net 30 (customers pay in 30 days)</option>
+            <option value="60">Net 60 (customers pay in 60 days)</option>
+          </select>
+          <p id="terms-help" class="note">How long customers take to pay their bills</p>
+        </fieldset>
+
+        <details style="margin-top:16px;">
+          <summary>💡 What counts as inflows and outflows?</summary>
+          <div style="margin-top:8px;">
+            <h4>💵 Money Coming In (Inflows):</h4>
+            <ul>
+              <li>Sales receipts from customers</li>
+              <li>Bank loans or investor funding</li>
+              <li>Government grants</li>
+              <li>Money from selling equipment</li>
+            </ul>
+            
+            <h4>💸 Money Going Out (Outflows):</h4>
+            <ul>
+              <li>Buying stock/inventory</li>
+              <li>Staff wages and salaries</li>
+              <li>Rent and utilities</li>
+              <li>Marketing and advertising</li>
+              <li>New equipment purchases</li>
+            </ul>
+          </div>
+        </details>
+      </section>
+
+      <section class="panel" aria-labelledby="forecast-heading">
+        <h2 id="forecast-heading">📊 Your Cash Flow Forecast</h2>
+        <p class="note">
+          <strong>How to use:</strong> Enter whole numbers in the editable cells. 
+          The table calculates totals automatically. Watch for red highlighting on negative months!
+        </p>
+        
+        <div class="table-container">
+          <div id="tableWrap" role="region" aria-label="Cash flow forecast data table"></div>
+        </div>
+        
+        <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap;" role="group" aria-label="Forecast summary">
+          <span class="pill" id="negCount" aria-live="polite">0 months negative</span>
+          <span class="pill" id="lowestBal" aria-live="polite">Lowest: £0</span>
+        </div>
+
+        <section aria-labelledby="chart-heading">
+          <h3 id="chart-heading">📈 Visual Cash Flow Chart</h3>
+          <svg id="chart" class="chart" role="img" 
+               aria-labelledby="chart-title chart-desc">
+            <title id="chart-title">Line graph showing monthly closing cash balance</title>
+            <desc id="chart-desc">
+              Interactive chart displaying cash balance trends over time. 
+              Green circles show positive balances, red circles show negative balances.
+            </desc>
+          </svg>
+        </section>
+
+        <details style="margin-top:16px;">
+          <summary>🔍 Interpretation & Solutions</summary>
+          <div id="insights" class="note" aria-live="polite"></div>
+        </details>
+
+        <!-- Mini Learning Checks -->
+        <section id="miniChecks" class="mini-panel" aria-labelledby="mini-checks-heading">
+          <h3 id="mini-checks-heading">🎯 Knowledge Check Activities</h3>
+          <p class="note">Complete these mini-tasks to test your understanding:</p>
+          
+          <div class="mini-grid">
+            <!-- Check 1: Negative Months -->
+            <article class="mini-box" aria-labelledby="check1-heading">
+              <h4 id="check1-heading">🔴 Check 1: Spot Cash Problems</h4>
+              <p class="note">
+                Look at your forecast above. Are there any months where the business 
+                runs out of money (negative closing balance)?
+              </p>
+              <button class="btn secondary small" id="btnCheckNeg" 
+                      aria-describedby="mini-neg-feedback">
+                🔍 Check for Problems
+              </button>
+              <div class="note" id="miniNegFeedback" aria-live="polite" aria-atomic="true"></div>
+            </article>
+
+            <!-- Check 2: Payment Terms -->
+            <article class="mini-box" aria-labelledby="check2-heading">
+              <h4 id="check2-heading">⏱️ Check 2: Payment Timing</h4>
+              <p class="note">
+                Drag each statement to the correct payment terms box. 
+                Think about when cash actually arrives!
+              </p>
+              
+              <div class="bins-row" role="group" aria-label="Payment terms sorting area">
+                <div class="bin" id="bin-term-0" data-term="0" 
+                     aria-label="Drop zone for immediate payment statements">
+                  <strong>Cash on Sale</strong>
+                  <small>Money arrives immediately</small>
+                </div>
+                <div class="bin" id="bin-term-30" data-term="30"
+                     aria-label="Drop zone for 30-day payment statements">
+                  <strong>30 Day Credit</strong>
+                  <small>Money arrives in ~1 month</small>
+                </div>
+                <div class="bin" id="bin-term-60" data-term="60"
+                     aria-label="Drop zone for 60-day payment statements">
+                  <strong>60 Day Credit</strong>
+                  <small>Money arrives in ~2 months</small>
+                </div>
+              </div>
+              
+              <div id="termCards" class="card-row" 
+                   aria-label="Drag these cards to the correct payment terms"></div>
+              
+              <button class="btn ghost small" id="btnCheckTerms"
+                      aria-describedby="mini-terms-feedback">
+                ✅ Check My Sorting
+              </button>
+              <div class="note" id="miniTermsFeedback" aria-live="polite" aria-atomic="true"></div>
+            </article>
+
+            <!-- Check 3: Advantages vs Disadvantages -->
+            <article class="mini-box" aria-labelledby="check3-heading">
+              <h4 id="check3-heading">⚖️ Check 3: Pros and Cons</h4>
+              <p class="note">
+                Sort these statements: Are they advantages (good things) or 
+                disadvantages (problems) of cash flow forecasting?
+              </p>
+              
+              <div class="bins-row" role="group" aria-label="Advantages and disadvantages sorting">
+                <div class="bin" id="bin-adv" data-type="adv"
+                     aria-label="Drop zone for advantages">
+                  <strong>✅ Advantages</strong>
+                  <small>Good things about forecasting</small>
+                </div>
+                <div class="bin" id="bin-dis" data-type="dis"
+                     aria-label="Drop zone for disadvantages">
+                  <strong>❌ Disadvantages</strong>
+                  <small>Problems or limitations</small>
+                </div>
+              </div>
+              
+              <div id="advCards" class="card-row"
+                   aria-label="Drag these cards to advantages or disadvantages"></div>
+              
+              <button class="btn ghost small" id="btnCheckAdv"
+                      aria-describedby="mini-adv-feedback">
+                ✅ Check My Sorting
+              </button>
+              <div class="note" id="miniAdvFeedback" aria-live="polite" aria-atomic="true"></div>
+            </article>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="footer" role="contentinfo">
+      <p>
+        🎓 <strong>Cash Flow Forecast Lab</strong> - Built for inclusive classroom learning<br>
+        <small>All calculations happen in your browser. No data is stored or shared.</small><br>
+        <small>Designed with accessibility in mind for all learners including SEND students.</small>
+      </p>
+    </footer>
+  </div>
+
+  <!-- Main application script -->
+  <script src="script.js"></script>
+</body>
+</html>
